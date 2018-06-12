@@ -1,5 +1,16 @@
 const initialState = {
-  equipped: [],
+  equipped: [  {
+    id: 25,
+    category: 'weapons',
+    name: 'Dagger',
+    buyValue: 50,
+    sellValue: 25,
+    hitChance: 800,
+    dmgRange: [5, 10],
+    upgradeTimes: 0,
+    attackSpeed: 0,
+    criticalChance: 400,
+  },],
 };
 
 export default (state = initialState, action) => {

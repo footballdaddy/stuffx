@@ -5,7 +5,7 @@ import Arena from '../../containers/Arena';
 import Shop from '../../containers/Shop';
 import TraitsContainer from '../../containers/TraitsContainer';
 import AttackButtons from '../../containers/AttackButtons';
-
+import DungeonContainer from '../../containers/DungeonContainer'
 import MagicShop from '../../containers/MagicShop';
 export default class App extends Component {
   constructor(props) {
@@ -16,6 +16,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
+        <DungeonContainer />
         <div>
           <AttackButtons />
         </div>

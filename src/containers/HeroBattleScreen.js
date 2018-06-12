@@ -292,10 +292,10 @@ class HeroBattleScreen extends React.Component {
     return (
       <div className="hero-battle-screen">
         <div className="flex-row space-around">
-          <CounterAttack
+          {/* <CounterAttack
             playerTurn={this.props.attackWait}
             opponentTurn={this.props.opponent.attackWait}
-          />
+          /> */}
         </div>
       </div>
     );
