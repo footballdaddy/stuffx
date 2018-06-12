@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import stats from './modules/stats';
 import game from './modules/game';
 import enemy from './modules/enemy';
 import exp from './modules/exp';
@@ -13,6 +12,9 @@ import description from './modules/description';
 import playerstats from './modules/playerstats';
 import opponent from './modules/opponent';
 import skills from './modules/skills';
+import story from '../story/reducers/story'
+import stats from '../training/redux/modules/stats';
+
 export default combineReducers({
   stats,
   game,
@@ -28,4 +30,5 @@ export default combineReducers({
   playerstats,
   opponent,
   skills,
+  story
 });

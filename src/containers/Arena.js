@@ -7,6 +7,7 @@ import Console from './Console';
 import OpponentScreen from './OpponentScreen';
 import { opponentList } from '../data/opponentList';
 import { randomArrayItem } from '../common';
+import EquipmentPanel from './EquipmentPanel'
 // Actions
 import {
   chooseOpponent,
@@ -68,8 +69,9 @@ class Arena extends React.Component {
           )}
           <HeroBattleScreen />
           <div className="vertical-layout">
-            <Console logs={logs} />
+            <EquipmentPanel />
             <OpponentScreen opponent={opponent.opponent} />
+
           </div>
         </Fragment>
       </div>
@@ -79,7 +81,6 @@ class Arena extends React.Component {
 
 const mapStateToProps = state => ({
   opponent: state.opponent,
-  logs: state.logs.logs,
   equipped: state.equip.equipped,
 });
 

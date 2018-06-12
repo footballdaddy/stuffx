@@ -85,17 +85,6 @@ class AttackButtons extends React.Component {
             ) : null}
           </div>
         ))}
-        <button className="flex-row btn-attack" onClick={() => this.attack()}>
-          <div className="btn-attack-img normal" />
-          <p>Attack</p>
-        </button>
-        <button
-          className="flex-row btn-attack"
-          onClick={() => this.useItem(el, 'punch')}
-        >
-          <div className="btn-attack-img strong" />
-          <p>Strength +10</p>
-        </button>
       </div>
     );
   }
