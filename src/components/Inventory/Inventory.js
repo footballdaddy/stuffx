@@ -16,19 +16,24 @@ export default class Inventory extends Component {
     return (
       <Transition duration={{ hide: 500, show: 500 }} visible={true}>
         <Grid.Column>
-          <div>
+          <div className="flex-container-column">
             <div
               className={`equipped-item-icon id_${this.props.value.id}`}
-              onMouseEnter={() => this.props.showItemDescription(this.props.value)}
+              onMouseEnter={() =>
+                this.props.showItemDescription(this.props.value)
+              }
               onMouseLeave={() => this.props.showItemDescription('')}
             />
+            <div>
+              <Button
+                color="green"
+                content="Equip"
+                onClick={() => this.props.onClick(this.props.value)}
+                // style={{ position: 'absolute', right: '10px', bottom: '10px' }}
+              />
+            </div>
+
             {this.props.value.name}
-            <Button
-              color="green"
-              content="Equip"
-              onClick={() => this.props.onClick(this.props.value)}
-              // style={{ position: 'absolute', right: '10px', bottom: '10px' }}
-            />
           </div>
         </Grid.Column>
       </Transition>

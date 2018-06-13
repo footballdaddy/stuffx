@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import EffectList from './EffectList';
 
 class StatsPanel extends React.Component {
-  handleClick = attr => {
-    this.props.incrementAttribute(attr);
-    this.props.calculateAttributeBonus();
-  };
+
 
   render() {
     const {
@@ -37,6 +35,43 @@ class StatsPanel extends React.Component {
 
     return (
       <div className="opponent-battle-screen">
+        <div>
+          <p className="text-center">
+          <span className="opponent-name">Player</span>
+          <div className="panel-bar health-bar">
+            <div
+              style={{
+                width: `${Math.floor(100 - (currentHP / maxHP) * 100)}%`,
+              }}
+              className="damage"
+            />
+
+          </div>
+          <p>HP: {`${currentHP} / ${maxHP}`}</p>
+          </p>
+
+          {/* <div className="hero-right-panel">
+          <p className="player-name">Player</p>
+          <p>Stage: {stage}</p>
+          <p>Level: {level}</p>
+          <div className="panel-bar exp-bar">
+            <p>EXP: {`${exp} / ${nextExpLevel}`}</p>
+
+            <div
+              style={{ width: `${Math.floor(exp / nextExpLevel * 100)}%` }}
+              className="exp"
+            />
+          </div>
+
+          <div className="hero-pic" />
+          <div className="panel-bar health-bar">
+            <p>HP: {`${currentHP} / ${maxHP}`}</p>
+            <div
+              style={{ width: `${Math.floor(100 - currentHP / maxHP * 100)}%` }}
+              className="damage"
+            />
+          </div> */}
+
           <div className="hero-attributes">
             <div className="attr-pts">
               <p>Stats</p>
@@ -102,7 +137,9 @@ class StatsPanel extends React.Component {
             </div>
           </div>
 
+          <EffectList />
         </div>
+      </div>
     );
   }
 }
@@ -120,11 +157,11 @@ const mapStateToProps = state => ({
   stage: state.playerstats.stage,
   exp: state.playerstats.exp,
   maxHP: state.hp.maxHP,
+  currentHP: state.hp.currentHP,
   playerstats: state.playerstats,
   temporaryEffects: state.tempeffects.temporaryEffects,
 });
 
 export default connect(
-  mapStateToProps,
-  {},
+  mapStateToProps, {}
 )(StatsPanel);

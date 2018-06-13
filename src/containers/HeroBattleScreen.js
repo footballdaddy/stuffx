@@ -27,8 +27,8 @@ import {
   updateAttackTimeOpponent,
 } from '../redux/modules/opponent';
 import CounterAttack from '../components/CounterAttack';
+import PlayerPanel from './PlayerPanel'
 
-import AttackButtons from './AttackButtons';
 class HeroBattleScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -290,14 +290,7 @@ class HeroBattleScreen extends React.Component {
 
   render() {
     return (
-      <div className="hero-battle-screen">
-        <div className="flex-row space-around">
-          {/* <CounterAttack
-            playerTurn={this.props.attackWait}
-            opponentTurn={this.props.opponent.attackWait}
-          /> */}
-        </div>
-      </div>
+      <PlayerPanel />
     );
   }
 }

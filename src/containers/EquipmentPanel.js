@@ -50,28 +50,28 @@ class EquipPanel extends React.Component {
       item => item.category !== 'potions' && item.category !== 'oils',
     );
     return (
-        <div className="equip-panel">
-          <ItemDescription hoveredItem={hoveredItem} />
-          {categoriesArray.map((el, i) => (
-            <div key={i} className={`empty-slot equipped-item ${el}`} />
-          ))}
-          {battleGear.map((el, i) => (
-            <div key={i}>
-              <div
-                className={`used-slot equipped-item id_${el.id} ${el.category}`}
-                onClick={() => {
-                  this.handleClick(el);
-                  this.showItemDescription('');
-                }}
-                onMouseEnter={() => this.showItemDescription(el)}
-                onMouseLeave={() => this.showItemDescription('')}
-              />
-            </div>
-          ))}
-                    <div style={{ marginTop: '50px' }} />
+      <div className="equip-panel">
+        <ItemDescription hoveredItem={hoveredItem} />
+        {categoriesArray.map((el, i) => (
+          <div key={i} className={`empty-slot equipped-item ${el}`} />
+        ))}
+        {battleGear.map((el, i) => (
+          <div key={i}>
+            <div
+              className={`used-slot equipped-item id_${el.id} ${el.category}`}
+              onClick={() => {
+                this.handleClick(el);
+                this.showItemDescription('');
+              }}
+              onMouseEnter={() => this.showItemDescription(el)}
+              onMouseLeave={() => this.showItemDescription('')}
+            />
+          </div>
+        ))}
+        <div style={{ marginTop: '50px' }} />
 
-<Inventory />
-        </div>
+        <Inventory />
+      </div>
     );
   }
 }
@@ -82,11 +82,14 @@ const mapStateToProps = state => ({
   hoveredItem: state.description.hoveredItem,
 });
 
-export default connect(mapStateToProps, {
-  unequipItem,
-  addEffect,
-  calculateAttributeBonus,
-  restoreHP,
-  showDescription,
-  upgradeItem,
-})(EquipPanel);
+export default connect(
+  mapStateToProps,
+  {
+    unequipItem,
+    addEffect,
+    calculateAttributeBonus,
+    restoreHP,
+    showDescription,
+    upgradeItem,
+  },
+)(EquipPanel);

@@ -9,20 +9,8 @@ import {
   showDescription,
 } from '../redux/modules/actions';
 import { startSkill, removeSkillEffects } from '../redux/modules/skills';
-const el = {
-  id: 6,
-  category: 'potions',
-  name: 'Potion of strength',
-  buyValue: 200,
-  sellValue: 100,
-  effect: {
-    statIncrease: 'strength',
-  },
-  useLocation: 'exploration',
-  description: 'Increases strength by 10 during next battle.',
-};
 
-class AttackButtons extends React.Component {
+class Skills extends React.Component {
   useItem = (elx, key) => {
     this.props.startSkill(key);
     if (typeof elx.restore !== 'undefined') {
@@ -36,21 +24,7 @@ class AttackButtons extends React.Component {
     this.props.calculateAttributeBonus();
   };
 
-  // calculateToCoolDown = skill => {
-  //   if (this.props.skills[skill].currentCoolDown >= 0) {
-  //     return (
-  //       <button className="use-btn" onClick={() => this.useItem(el, skill)}>
-  //         {this.props.skills[skill]}
-  //       </button>
-  //     );
-  //   } else {
-  //     return (
-  //       <button className="use-btn">
-  //         {this.props.skills[skill]} {this.props.skills[skill].currentCoolDown}
-  //       </button>
-  //     );
-  //   }
-  // };
+
 
   render() {
     return (
@@ -106,4 +80,4 @@ export default connect(mapStateToProps, {
   showDescription,
   removeSkillEffects,
   startSkill,
-})(AttackButtons);
+})(Skills);

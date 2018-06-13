@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 // Copmponents
 import HeroBattleScreen from './HeroBattleScreen';
-import OpponentScreen from './OpponentScreen';
 // import Console from './Console';
 // import EquipmentPanel from './EquipmentPanel'
 // Actions
@@ -27,16 +26,11 @@ class Arena extends React.Component {
   render() {
     const { opponent } = this.props;
     return (
-      <div>
         <Fragment>
           <HeroBattleScreen />
-          <div className="vertical-layout">
             {/* <EquipmentPanel /> */}
-            <OpponentScreen opponent={opponent} />
 
-          </div>
         </Fragment>
-      </div>
     );
   }
 }
@@ -47,7 +41,6 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  chooseOpponent,
   calculateAttributeBonus,
   updateEquipped,
 })(Arena);

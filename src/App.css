@@ -6,6 +6,39 @@
   flex-wrap: nowrap;
   justify-content: center;
 }
+.flex-container-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.flex-container-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.dungeon {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+}
+
+.auto-margin {
+  margin: auto 0;
+
+}
+
+/* Tablet Styles */
+/* @media only screen and (min-width: 401px) and (max-width: 960px) { */
+  .player,
+  .opponent,
+  .tab-important,
+  .feature-3 {
+    width: 33.33%;
+  }
+/* } */
+
 .equipped-item {
   width: 45px;
   height: 45px;
@@ -626,9 +659,9 @@
 .vertical-layout .opponent-battle-screen .opponent-battle-image.zmij {
   background-position: -60px;
 }
-.vertical-layout .opponent-battle-screen .panel-bar {
+.opponent-battle-screen .panel-bar {
   margin: 0 auto;
-  width: 200px;
+  width: 50%;
 }
 
 .effect-box {
@@ -853,7 +886,7 @@
 
 .hero-battle-screen,
 .opponent-battle-screen {
-  margin: 0 20px;
+  /* margin: 0 20px; */
 }
 
 .btn-attack {
@@ -931,8 +964,7 @@
 }
 
 .equip-panel {
-  width: 360px;
-  position: relative;
+  /* position: relative; */
 }
 .equip-panel .item-description {
   position: absolute;
