@@ -24,7 +24,7 @@ const SortableItem = SortableElement(({ value, equipItem, onClick, showItemDescr
 const SortableList = SortableContainer(
   ({ items, equipItem, onClick, showItemDescription }) => {
     return (
-      <div className={"flex-container-wrap"}>
+      <div className={"flex-container-wrap-start"}>
         {items.map((value, index) => (
           <SortableItem
             key={`item-${index}`}

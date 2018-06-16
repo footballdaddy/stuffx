@@ -18,6 +18,13 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+.flex-container-wrap-start {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /* outline-style: groove; */
+
+}
 .dungeon {
   width: 100%;
   display: flex;
@@ -997,7 +1004,7 @@
 }
 
 .equip-panel {
-  /* position: relative; */
+  position: relative;
 }
 .equip-panel .item-description {
   position: absolute;
