@@ -13,32 +13,14 @@ class OpponentPanel extends React.Component {
           </Fragment>
         ) : (
           <Fragment>
-            <div className={`opponent-battle-image ${opponent.name}`} />
+          <div className="hero-attributes">
+            <div className="attr-pts">
+              <p>Stats</p>
+            </div>
 
-            <div>
-              <p className="text-center">
-                <span className="opponent-name">{opponent.name}</span>
-                <div className="panel-bar health-bar">
-                  <div
-                    style={{
-                      width: `${Math.floor(
-                        100 - (opponent.currentHP / opponent.maxHP) * 100,
-                      )}%`,
-                    }}
-                    className="damage"
-                  />
-                </div>
-                <p>HP: {`${opponent.currentHP} / ${opponent.maxHP}`}</p>
-              </p>
-
-              <div className="hero-attributes">
-                <div className="attr-pts">
-                  <p>Stats</p>
-                </div>
-
-                <div className="flex-row">
-                  <div className="panel-damage attr-pic" />
-                  <p>
+            <div className="flex-row">
+              <div className="panel-damage attr-pic" />
+              <p>
                     Damage:<br />{' '}
                     {`${Math.round(opponent.damage[0])} - ${Math.round(
                       opponent.damage[1],
@@ -99,7 +81,6 @@ class OpponentPanel extends React.Component {
                   </div>
                 ))}
               </div>
-            </div>
           </Fragment>
         )}
       </div>

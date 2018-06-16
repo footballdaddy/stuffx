@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button, Image, Transition, Grid } from 'semantic-ui-react';
 
 export default class Inventory extends Component {
   constructor(props) {
@@ -14,29 +13,24 @@ export default class Inventory extends Component {
 
   render() {
     return (
-      <Transition duration={{ hide: 500, show: 500 }} visible={true}>
-        <Grid.Column>
-          <div className="flex-container-column">
+          <div className="item-inventory flex-container-column">
             <div
               className={`equipped-item-icon id_${this.props.value.id}`}
-              onMouseEnter={() =>
-                this.props.showItemDescription(this.props.value)
-              }
-              onMouseLeave={() => this.props.showItemDescription('')}
+              // onMouseEnter={() =>
+              //   this.props.showItemDescription(this.props.value)
+              // }
+              // onMouseLeave={() => this.props.showItemDescription('')}
             />
             <div>
-              <Button
-                color="green"
-                content="Equip"
+              <button
                 onClick={() => this.props.onClick(this.props.value)}
-                // style={{ position: 'absolute', right: '10px', bottom: '10px' }}
-              />
+              >Equip</button>
             </div>
+<div className="center-text">
 
             {this.props.value.name}
+</div>
           </div>
-        </Grid.Column>
-      </Transition>
     );
   }
 }

@@ -5,7 +5,6 @@ import {
   SortableElement,
   arrayMove,
 } from 'react-sortable-hoc';
-import { Grid } from 'semantic-ui-react';
 import Inventory from './Inventory';
 
 import * as inventoryActions from '../../redux/modules/inventory';
@@ -25,7 +24,7 @@ const SortableItem = SortableElement(({ value, equipItem, onClick, showItemDescr
 const SortableList = SortableContainer(
   ({ items, equipItem, onClick, showItemDescription }) => {
     return (
-      <Grid columns={3}>
+      <div className={"flex-container-wrap"}>
         {items.map((value, index) => (
           <SortableItem
             key={`item-${index}`}
@@ -36,7 +35,7 @@ const SortableList = SortableContainer(
             showItemDescription={showItemDescription}
           />
         ))}
-      </Grid>
+      </div>
     );
   },
 );

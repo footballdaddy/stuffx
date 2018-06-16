@@ -10,8 +10,8 @@ import { weapons } from '../data/weapons.js';
 import { armory } from '../data/armory.js';
 
 const Shop = () => (
-  <div>
-    <SellPanel gamelocation="blacksmith" />
+  <div className="flex-container-wrap">
+  <SellPanel gamelocation="blacksmith" />
     <div className="location-box">
       <div className="blacksmith" />
       <DialogBox gamelocation="blacksmith" />

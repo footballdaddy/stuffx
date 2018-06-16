@@ -11,7 +11,7 @@ import { jewellery } from '../data/jewellery.js'
 
 const MagicShop = () => (
 
-	<div>
+  <div className="flex-container-wrap">
 		<SellPanel gamelocation="shop"/>
 		<div className="location-box">
 			<div className="shop">

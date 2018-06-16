@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 const ItemDescription = ({ hoveredItem }) => (
-  <div className="item-description">
+  <div className="">
     <span className="item-name">
       {hoveredItem.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </span> <br/>

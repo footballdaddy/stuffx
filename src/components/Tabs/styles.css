@@ -1,0 +1,32 @@
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+
+.tab-content {
+  display: flex;
+  justify-content: center;
+}
+
+.active-item-highlight {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background: rgba(0,0,0,.05);
+  color: rgba(0,0,0,.95);
+  border-radius: .28571429rem;
+}
+
+
+.active-item-text {
+  font-weight: 700;
+}
+
+/* .active.item-text {
+  background-color: transparent;
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  font-weight: 400;
+  color: rgba(0,0,0,.95);
+} */

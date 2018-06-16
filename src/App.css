@@ -1,5 +1,6 @@
 /* importing variables */
 /* importing page elements */
+/* * { outline: solid 0.25rem rgba(225, 11, 11, 0.5); } */
 
 .flex-container {
   display: flex;
@@ -23,6 +24,9 @@
   justify-content: center;
 
 }
+.center-text {
+  text-align: center;
+}
 
 .auto-margin {
   margin: auto 0;
@@ -34,10 +38,39 @@
   .player,
   .opponent,
   .tab-important,
+  .item-inventory,
   .feature-3 {
     width: 33.33%;
   }
+
+  .tab-misc {
+    width: 100%;
+  }
 /* } */
+
+@media only screen and (max-width: 700px) {
+  .player,
+  .opponent {
+    width: 50%;
+  }
+  .dungeon {
+    order: 1;
+  }
+  .player {
+    order: 2;
+  }
+  .opponent {
+    order: 3;
+  }
+  .tab-important {
+    width: 100%;
+    order: 4;
+  }
+  .tab-misc {
+    width: 100%;
+    order: 5;
+  }
+}
 
 .equipped-item {
   width: 45px;

@@ -1,15 +1,23 @@
-import React from 'react'
-import { Tab } from 'semantic-ui-react'
+import React from 'react';
 import EquipmentPanel from './EquipmentPanel';
+import StatsPanel from './StatsPanel';
+import TraitsContainer from './TraitsContainer';
+import { Tabs, TabSection } from '../components/Tabs/Tabs';
 
-const panes = [
-  { menuItem: 'Tab 1', render: () => <Tab.Pane><EquipmentPanel /></Tab.Pane> },
-  { menuItem: 'Tab 2', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
-  { menuItem: 'Tab 3', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
-]
-
-const TabExampleBasic = () => <div className="tab-important">
-  <Tab panes={panes} />
+const TabImportant = () => (
+  <div className="tab-important">
+    <Tabs type="highlight">
+      <TabSection name="Inventory">
+        <EquipmentPanel />
+      </TabSection>
+      <TabSection name="Stats">
+        <StatsPanel />
+      </TabSection>
+      <TabSection name="Traits">
+        <TraitsContainer />
+      </TabSection>
+    </Tabs>
   </div>
+);
 
-export default TabExampleBasic
+export default TabImportant;
