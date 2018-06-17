@@ -5,9 +5,9 @@ function MenuButtons(props) {
     return (
       <div className="menu-buttons-container">
         <div className="menu-buttons">
-          <button onClick={props.toggleTextBox}>
-            {props.textBoxShown ? "Hide Text Box" : "Show Text Box"}
-          </button>
+          {/* <button onClick={props.toggleTextBox}>
+            {props.textBoxShown ? "Hide Text" : "Show Text"}
+          </button> */}
           <button onClick={props.toggleBacklog}>
             {props.backlogShown ? "Hide Backlog" : "Backlog"}
           </button>
@@ -17,15 +17,15 @@ function MenuButtons(props) {
             <button onClick={props.startSkip}>Skip</button>
           )}
 
-          <button onClick={props.toggleSaveMenu}>
+          {/* <button onClick={props.toggleSaveMenu}>
             {props.saveMenuShown ? "Hide Saves" : "Save"}
           </button>
           <button onClick={props.toggleLoadMenu}>
             {props.loadMenuShown ? "Hide Loads" : "Load"}
-          </button>
+          </button> */}
 
           <button className="shown-button" onClick={props.toggleMenu}>
-            Hide Buttons
+            Hide Options
           </button>
         </div>
       </div>
