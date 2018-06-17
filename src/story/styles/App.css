@@ -117,7 +117,7 @@
 /* 270x 500 */
 
 .bg {
-  position: fixed;
+  position: absolute;
   left: 50%;
   margin-left: -640px;
 }
@@ -193,6 +193,13 @@
     position: absolute;
     bottom: 4%;
   }
+  .menu-buttons {
+    position: relative;
+    bottom: 0px;
+    z-index: 6;
+    width: 100%;
+    float: left;
+}
 
 }
 
@@ -420,7 +427,7 @@
 }
 
 .menu-buttons {
-  position: fixed;
+  position: relative;
   z-index: 6;
   bottom: 0px;
   width: 100%;

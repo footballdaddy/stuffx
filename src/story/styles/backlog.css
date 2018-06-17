@@ -110,12 +110,6 @@
   background: #e61919;
 }
 
-.bg {
-  position: fixed;
-  left: 50%;
-  margin-left: -640px;
-}
-
 .overlay {
   position: absolute;
   width: 100%;
