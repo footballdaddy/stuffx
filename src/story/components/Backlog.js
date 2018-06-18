@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import story from "../api/novelFrames";
+import * as story from '../api/story'
 
 class Backlog extends Component {
   componentDidMount() {
@@ -26,7 +26,7 @@ class Backlog extends Component {
     let textHistory = [];
     const indexHistory = this.props.indexHistory;
     const choicesIndexHistory = this.props.choicesIndexHistory;
-
+    {console.log(this.props.story)}
     for (let i = 0; i < indexHistory.length; i++) {
       const index = indexHistory[i];
       const choicesIndex = choicesIndexHistory[i];
@@ -36,8 +36,8 @@ class Backlog extends Component {
           <div className="backlog-jump-container" onClick={() => this.handleJump(index, i, choicesIndex)}>
             <span className="backlog-jump-text">Jump</span>
           </div>
-          <div className="backlog-speaker">{story[index].speaker}</div>
-          {story[index].text}
+          <div className="backlog-speaker">{story[this.props.story][index].speaker}</div>
+          {story[this.props.story][index].text}
         </div>
       );
     }

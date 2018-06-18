@@ -297,6 +297,7 @@ class App extends Component {
     return (
       <Backlog
         index={this.props.story.index}
+        story={this.props.story.story}
         setChoice={this.setNextChoice.bind(this)}
         setFrame={this.setFrame.bind(this)}
         toggleBacklog={this.toggleBacklog.bind(this)}
