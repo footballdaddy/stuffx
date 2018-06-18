@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Sound from 'react-sound';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 // API
-import novelFrames from './api/novelFrames';
+import * as story from './api/story';
 import Choices from './api/Choices';
 // Components
 import TitleScreen from './components/TitleScreen';
@@ -26,8 +26,8 @@ class App extends Component {
     ============================================================================================ */
 
   setFrameFromChoice(choice, jumpToBecauseChoice) {
-      for (let i = 0; i < novelFrames.length; i++) {
-        if (jumpToBecauseChoice === novelFrames[i].routeBegins) {
+      for (let i = 0; i < story[this.props.story.story].length; i++) {
+        if (jumpToBecauseChoice === story[this.props.story.story][i].routeBegins) {
           this.setFrame(i);
         }
       }
@@ -46,24 +46,24 @@ class App extends Component {
     // Resume to title screen after testRoutes detours
     if (
       this.props.story.choicesStore.pickedObject === 1 &&
-      novelFrames[currentIndex].jumpBecauseStoreTo === "haveKey"
+      story[this.props.story.story][currentIndex].jumpBecauseStoreTo === "haveKey"
     ) {
-      for (let i = 0; i < novelFrames.length; i++) {
+      for (let i = 0; i < story[this.props.story.story].length; i++) {
         if (
-          novelFrames[currentIndex].jumpBecauseStoreTo ===
-          novelFrames[i].receiveJumpBecauseStore
+          story[this.props.story.story][currentIndex].jumpBecauseStoreTo ===
+          story[this.props.story.story][i].receiveJumpBecauseStore
         ) {
           this.setFrame(i);
         }
       }
-    } else if (novelFrames[currentIndex].jumpTo) {
+    } else if (story[this.props.story.story][currentIndex].jumpTo) {
       // Jumps indexes normally
-      if (novelFrames[currentIndex].jumpTo === "titleScreen") {
+      if (story[this.props.story.story][currentIndex].jumpTo === "titleScreen") {
         this.props.setTitleScreen();
-      } else if (novelFrames[currentIndex].jumpTo) {
+      } else if (story[this.props.story.story][currentIndex].jumpTo) {
         // Resumes to common route
-        for (let i = 0; i < novelFrames.length; i++) {
-          if (novelFrames[currentIndex].jumpTo === novelFrames[i].receiveJump) {
+        for (let i = 0; i < story[this.props.story.story].length; i++) {
+          if (story[this.props.story.story][currentIndex].jumpTo === story[this.props.story.story][i].receiveJump) {
             this.setFrame(i);
           }
         }
@@ -85,20 +85,20 @@ class App extends Component {
     =========================================================== */
 
   setFrame(index) {
-    // Makes sure the index is within the novelFrames array
-    if (index >= novelFrames.length) {
-      index = novelFrames.length - 1;
+    // Makes sure the index is within the story[this.props.story.story] array
+    if (index >= story[this.props.story.story].length) {
+      index = story[this.props.story.story].length - 1;
     } else if (index <= -1) {
       index = 0;
     }
-    // Updates novelFrames with new index
+    // Updates story[this.props.story.story] with new index
     this.props.setFrame(index);
   }
 
-  // For developers to see what index they're editing. To request, set logIndex to true in novelFrames.js.
+  // For developers to see what index they're editing. To request, set logIndex to true in story[this.props.story.story].js.
   componentDidMount() {
-    for (var i = 0; i < novelFrames.length; i++) {
-      if (novelFrames[i].logIndex) {
+    for (var i = 0; i < story[this.props.story.story].length; i++) {
+      if (story[this.props.story.story][i].logIndex) {
         console.log([i]);
       }
     }
@@ -271,10 +271,8 @@ class App extends Component {
 
   // the GUI interface on the bottom
   renderMenuButtons() {
-    if (!this.props.story.buttonsDeleted) {
       return (
         <MenuButtons
-          deleteButtons={() => this.props.toggleDeleteButtons(true)}
           menuButtonsShown={this.props.story.menuButtonsShown}
           toggleSaveMenu={this.toggleSaveMenu.bind(this)}
           toggleLoadMenu={this.toggleLoadMenu.bind(this)}
@@ -293,7 +291,6 @@ class App extends Component {
 
         />
       );
-    }
   }
 
   backlog() {
@@ -315,21 +312,6 @@ class App extends Component {
     );
   }
 
-  // backlog() {
-  //   let loggedText = [];
-  //   for (var i = 0; i < this.props.story.indexHistory.length; i++) {
-  //     loggedText.unshift(
-  //       <div className="backlog" key={loggedText.toString()}>
-  //         <div className="backlog-speaker">
-  //           {novelFrames[this.props.story.indexHistory[i]].speaker}
-  //         </div>
-  //         {novelFrames[this.props.story.indexHistory[i]].text}
-  //       </div>,
-  //     );
-  //   }
-
-  //   return <div className="overlay backlog-overlay">{loggedText}</div>;
-  // }
   playBGM() {
     return (
       <Sound

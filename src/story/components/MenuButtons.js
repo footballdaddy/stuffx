@@ -36,7 +36,6 @@ function MenuButtons(props) {
       <div className="menu-buttons-container">
         <div className="menu-buttons hidden">
           <button onClick={props.toggleMenu}>Show Buttons</button>
-          <button onClick={props.deleteButtons}>Delete Buttons</button>
         </div>
       </div>
     );

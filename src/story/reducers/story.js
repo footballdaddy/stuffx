@@ -1,6 +1,5 @@
 
-import novelFrames from '../api/novelFrames';
-
+import * as story from '../api/story'
 const initialState = {
   choicesStore: {},
   choicesHistory: [],
@@ -8,7 +7,6 @@ const initialState = {
   indexHistory: [],
   choiceOptions: [],
   index: 0,
-  buttonsDeleted: false,
   choicesExist: false,
   titleScreenShown: true,
   frameIsRendering: false,
@@ -19,6 +17,7 @@ const initialState = {
   loadMenuShown: false,
   isSkipping: false,
   choicesIndex: 0,
+  story: 'story0'
 };
 
 export const setFrameFromChoice = choicesStore => ({
@@ -69,10 +68,7 @@ export const toggleTextBox = value => ({
   type: 'TOGGLE_TEXT_BOX',
   value,
 });
-export const toggleDeleteButtons = value => ({
-  type: 'TOGGLE_DELETE_BUTTONS',
-  value,
-});
+
 export const beginStory = () => ({
   type: 'BEGIN_STORY',
 });
@@ -94,16 +90,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         index: action.index,
-        text: novelFrames[action.index].text,
-        bg: novelFrames[action.index].bg,
-        bgm: novelFrames[action.index].bgm,
-        choicesExist: novelFrames[action.index].choicesExist,
-        sceneChange: novelFrames[action.index].sceneChange,
-        sound: novelFrames[action.index].sound,
-        speaker: novelFrames[action.index].speaker,
-        sprite: novelFrames[action.index].sprite,
-        spriteEffect: novelFrames[action.index].spriteEffect,
-        voice: novelFrames[action.index].voice,
+        text: story[state.story][action.index].text,
+        bg: story[state.story][action.index].bg,
+        bgm: story[state.story][action.index].bgm,
+        choicesExist: story[state.story][action.index].choicesExist,
+        sceneChange: story[state.story][action.index].sceneChange,
+        sound: story[state.story][action.index].sound,
+        speaker: story[state.story][action.index].speaker,
+        sprite: story[state.story][action.index].sprite,
+        spriteEffect: story[state.story][action.index].spriteEffect,
+        voice: story[state.story][action.index].voice,
         indexHistory: [...state.indexHistory, action.index],
       };
 
@@ -151,11 +147,7 @@ export default (state = initialState, action) => {
         choicesIndex: action.choicesIndex,
         choiceOptions: action.choiceOptions,
       };
-    case 'TOGGLE_DELETE_BUTTONS':
-      return {
-        ...state,
-        buttonsDeleted: action.value,
-      };
+
     case 'TOGGLE_SKIPPING':
       return {
         ...state,
