@@ -107,6 +107,7 @@ export default (state = initialState, action) => {
         index: action.index,
         text: story[state.story][action.index].text,
         bg: story[state.story][action.index].bg,
+        bgGradient: story[state.story][action.index].bgGradient,
         bgm: story[state.story][action.index].bgm,
         choicesExist: story[state.story][action.index].choicesExist,
         sceneChange: story[state.story][action.index].sceneChange,

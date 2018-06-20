@@ -124,6 +124,7 @@ class App extends Component {
       <RenderFrame
         setNextFrame={this.setNextFrame.bind(this)}
         bg={this.props.story.bg}
+        bgGradient={this.props.story.bgGradient}
         sceneChange={this.props.story.sceneChange}
         sprite={this.props.story.sprite}
         spriteEffect={this.props.story.spriteEffect}

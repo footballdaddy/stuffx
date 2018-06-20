@@ -12,6 +12,7 @@ function RenderFrame(props) {
           transitionLeaveTimeout={props.sceneChange ? 1700 : 300}
         >
           <img key={props.bg} className="bg" src={props.bg} />
+          {props.bgGradient ? <div className={`bg-grad ${props.bgGradient}`} /> : ''}
           {props.sprite && props.sprite.length > 2 ? (
             // <div className="sprite-center">
             <div

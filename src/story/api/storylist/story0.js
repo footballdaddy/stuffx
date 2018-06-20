@@ -12,6 +12,7 @@ let story = [
       'layana-bodydress',
       'layana-arms-down',
     ],
+    bgGradient: 'sky-gradient-01',
     spriteEffect: "shake",
     // sprite: bn,
     text: "So we will keep track of the player's choices.",

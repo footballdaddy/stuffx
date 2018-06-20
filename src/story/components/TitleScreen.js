@@ -33,7 +33,6 @@ class TitleScreen extends Component {
 
               <p>
                 Rewards: <span>???</span>
-                {console.log([item])}
               </p>
               {this.handleButton(quests[item].reqs.exp, [item])}
 
@@ -69,7 +68,7 @@ class TitleScreen extends Component {
                   )}
                 </span>
               </p>
-              {/* <button onClick={this.props.beginStory}>Relive </button> */}
+              <button onClick={() => this.props.beginStory([item])}>Relive </button>
             </div>
           </article>
         );
