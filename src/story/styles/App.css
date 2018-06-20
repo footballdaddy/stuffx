@@ -5,8 +5,45 @@
   height: 720px;
   margin: auto;
 }
-.story {
+.containerx {
+  height: 100%;
+  margin: auto;
 }
+.card span {
+  font-weight: 600;
+}
+
+  .cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    max-height: 200vh;
+  }
+  .card {
+    width: 100%;
+    margin: 10px;
+    border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      top: 0;
+  transition: all .1s ease-in;
+
+  }
+
+  .card:hover {
+  top: -2px;
+  box-shadow: 0 4px 5px rgba(0,0,0,0.2);
+}
+  .card .text {
+    padding: 0 20px 20px;
+  }
+  .card .text > button {
+    background: gray;
+    border: 0;
+    color: white;
+    padding: 10px;
+    width: 20%;
+    }
 .ritsa-hairfront {
   background: url('../api/sprites/Ritsa/hair/hairfront.png') no-repeat;
 }

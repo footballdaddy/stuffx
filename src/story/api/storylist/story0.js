@@ -45,40 +45,15 @@ let story = [
     text: " will keep track of the player's choices.",
   },
   {
-    choicesExist: true,
-  },
-  {
-    routeBegins: 'pickedUpObject',
-    text: 'I bend down to pick up the object.',
-  },
-  {
-    text: "It's a key.",
-    jumpTo: 'objectChoice',
-  },
-  {
-    routeBegins: 'objectIgnored',
-    text: "I shouldn't do that.",
-  },
-  {
-    text: 'It could be infected or a trap.',
-    jumpTo: 'objectChoice',
-  },
-  {
-    receiveJump: 'objectChoice',
-    text: 'I walk ahead deeper into the dungeon and see a door ahead.',
-  },
-  {
-    text:
-      "I grab the handle and pull it, but it doesn't budge. It needs a key.",
-    jumpBecauseStoreTo: 'haveKey',
-  },
-  {
     text: 'I try picking it, but nothing happens.',
-  },
-  {
-    logIndex: true,
     sceneChange: true,
     jumpTo: 'titleScreen',
+
+  },
+  {
+    bg: require('../bg/microphone.jpeg'),
+
+    logIndex: true,
   },
   // Jumps to below if the user picks up the key
   {
@@ -90,23 +65,17 @@ let story = [
     text: 'The door opens.',
   },
   {
-    logIndex: true,
+    bg: require('../bg/microphone.jpeg'),
     sceneChange: true,
     jumpTo: 'titleScreen',
   },
 ];
 // BG
-for (let i = 0; i < 9; i++) {
-  story[i].bg = require('../bg/microphone.jpeg'); // source https://www.pexels.com/photo/blur-close-up-dark-focus-302655/
-}
 
-story[9].bg = require('../bg/microphone.jpeg');
+// for (let i = 10; i < 12; i++) {
+//   story[i].bg = require('../bg/microphone.jpeg'); // source https://www.pexels.com/photo/blur-close-up-dark-focus-302655/
+// }
 
-for (let i = 10; i < 12; i++) {
-  story[i].bg = require('../bg/microphone.jpeg'); // source https://www.pexels.com/photo/blur-close-up-dark-focus-302655/
-}
-
-story[12].bg = require('../bg/notBlockEnd.png');
 
 // BGM
 // ['head', 'hairfront', 'hairback', 'body', 'bodywear', 'arms', ]

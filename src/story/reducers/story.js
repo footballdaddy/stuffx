@@ -1,5 +1,5 @@
+import * as story from '../api/story';
 
-import * as story from '../api/story'
 const initialState = {
   choicesStore: {},
   choicesHistory: [],
@@ -17,7 +17,13 @@ const initialState = {
   loadMenuShown: false,
   isSkipping: false,
   choicesIndex: 0,
-  story: 'story0'
+  story: 'story0',
+  completedStory: {
+    "story0": false,
+    "story1": false,
+    "story2": false,
+    "story3": false,
+  },
 };
 
 export const setFrameFromChoice = choicesStore => ({
@@ -40,6 +46,14 @@ export const setChoicesHistory = index => ({
 export const setChoicesStore = index => ({
   type: 'SET_CHOICES_STORE',
   index,
+});
+export const setCompletedStory = key => ({
+  type: 'SET_COMPLETED_STORY',
+  key,
+});
+export const addReward = reward => ({
+  type: 'ADD_REWARD',
+  reward,
 });
 export const setTitleScreen = index => ({
   type: 'SET_TITLESCREEN',
@@ -69,8 +83,9 @@ export const toggleTextBox = value => ({
   value,
 });
 
-export const beginStory = () => ({
+export const beginStory = (story) => ({
   type: 'BEGIN_STORY',
+  story
 });
 export const beginStory1 = (choicesIndex, choiceOptions) => ({
   type: 'BEGIN_STORY1',
@@ -105,14 +120,39 @@ export default (state = initialState, action) => {
 
     case 'SET_TITLESCREEN':
       return {
-        ...initialState,
+        ...state,
+        choicesStore: {},
+        choicesHistory: [],
+        choicesIndexHistory: [],
+        indexHistory: [],
+        choiceOptions: [],
+        index: 0,
+        choicesExist: false,
+        titleScreenShown: true,
+        frameIsRendering: false,
+        menuButtonsShown: true,
+        backlogShown: false,
+        textBoxShown: true,
+        saveMenuShown: false,
+        loadMenuShown: false,
+        isSkipping: false,
+        choicesIndex: 0,
+        story: 'story0',
       };
     case 'BEGIN_STORY':
+    console.log(action.story)
       return {
         ...state,
         isSkipping: false,
         titleScreenShown: false,
         frameIsRendering: true,
+        story: action.story,
+
+      };
+    case 'SET_COMPLETED_STORY':
+      return {
+        ...state,
+        completedStory: { ...state.completedStory, [action.key]: true },
       };
     case 'SET_INDEX_HISTORY':
       return {

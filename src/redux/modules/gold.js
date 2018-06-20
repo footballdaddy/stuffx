@@ -11,6 +11,7 @@ export default (state = initialState, action) => {
       return { ...state, gold: state.gold + action.item.sellValue };
 
     case 'END_BATTLE_VICTORY':
+    case 'ADD_REWARD':
       return {
         ...state,
         gold: state.gold + action.reward.gold,

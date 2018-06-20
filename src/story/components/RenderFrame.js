@@ -3,8 +3,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 function RenderFrame(props) {
   return (
-    <div>
-      <div>
+    <div onClick={props.setNextFrame}>
+  <div className="container">
         <ReactCSSTransitionGroup
           component="div"
           transitionName={props.sceneChange ? 'scene' : 'sprite'}
@@ -33,7 +33,7 @@ function RenderFrame(props) {
           )}
         </ReactCSSTransitionGroup>
           {props.text && props.textBoxShown ? (
-            <div className="text-box" onClick={props.setNextFrame}>
+            <div className="text-box">
               {props.speaker ? (
                 <div className="speaker"> {props.speaker} </div>
               ) : null}

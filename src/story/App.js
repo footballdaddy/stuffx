@@ -5,20 +5,21 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 // API
 import * as story from './api/story';
 import Choices from './api/Choices';
+import quests from './api/quests'
 // Components
 import TitleScreen from './components/TitleScreen';
 import ChoiceMenu from './components/ChoiceMenu';
 import RenderFrame from './components/RenderFrame';
 import MenuButtons from './components/MenuButtons';
 import SaveLoadMenu from './components/SaveLoadMenu';
-import Backlog from './components/Backlog'
+import Backlog from './components/Backlog';
 
 // CSS
 import './styles/App.css';
 import './styles/TitleScreen.css';
 import './styles/saveLoadMenu.css';
-import './styles/effects.css'
-import './styles/backlog.css'
+import './styles/effects.css';
+import './styles/backlog.css';
 // import './App1.css'
 class App extends Component {
   /* ============================================================================================
@@ -26,19 +27,21 @@ class App extends Component {
     ============================================================================================ */
 
   setFrameFromChoice(choice, jumpToBecauseChoice) {
-      for (let i = 0; i < story[this.props.story.story].length; i++) {
-        if (jumpToBecauseChoice === story[this.props.story.story][i].routeBegins) {
-          this.setFrame(i);
-        }
+    for (let i = 0; i < story[this.props.story.story].length; i++) {
+      if (
+        jumpToBecauseChoice === story[this.props.story.story][i].routeBegins
+      ) {
+        this.setFrame(i);
       }
+    }
 
-      let choicesStore = Object.assign({}, this.props.choicesStore);
-      if (choicesStore[choice]) {
-        choicesStore[choice]++;
-      } else {
-        choicesStore[choice] = 1;
-      }
-      this.props.setFrameFromChoice({ choicesStore });
+    let choicesStore = Object.assign({}, this.props.choicesStore);
+    if (choicesStore[choice]) {
+      choicesStore[choice]++;
+    } else {
+      choicesStore[choice] = 1;
+    }
+    this.props.setFrameFromChoice({ choicesStore });
   }
 
   setNextFrame() {
@@ -46,7 +49,8 @@ class App extends Component {
     // Resume to title screen after testRoutes detours
     if (
       this.props.story.choicesStore.pickedObject === 1 &&
-      story[this.props.story.story][currentIndex].jumpBecauseStoreTo === "haveKey"
+      story[this.props.story.story][currentIndex].jumpBecauseStoreTo ===
+        'haveKey'
     ) {
       for (let i = 0; i < story[this.props.story.story].length; i++) {
         if (
@@ -58,12 +62,23 @@ class App extends Component {
       }
     } else if (story[this.props.story.story][currentIndex].jumpTo) {
       // Jumps indexes normally
-      if (story[this.props.story.story][currentIndex].jumpTo === "titleScreen") {
+      // let storyVar = story[this.props.story.story];
+      if (
+        story[this.props.story.story][currentIndex].jumpTo === 'titleScreen'
+      ) {
+        if (!(this.props.story.completedStory[this.props.story.story] === true)) {
+          this.props.setCompletedStory(this.props.story.story);
+          this.props.addReward(quests[this.props.story.story].reward);
+          console.log('hi');
+        }
         this.props.setTitleScreen();
       } else if (story[this.props.story.story][currentIndex].jumpTo) {
         // Resumes to common route
         for (let i = 0; i < story[this.props.story.story].length; i++) {
-          if (story[this.props.story.story][currentIndex].jumpTo === story[this.props.story.story][i].receiveJump) {
+          if (
+            story[this.props.story.story][currentIndex].jumpTo ===
+            story[this.props.story.story][i].receiveJump
+          ) {
             this.setFrame(i);
           }
         }
@@ -132,7 +147,6 @@ class App extends Component {
 
     this.props.setNextChoiceData(choicesIndex, Choices[choicesIndex].choices);
   }
-
 
   handleChoiceSelected(event) {
     this.stopSkip();
@@ -224,8 +238,8 @@ class App extends Component {
   }
 
   // "Begin" Button for title page.
-  beginStory() {
-    this.props.beginStory();
+  beginStory = (story) => {
+    this.props.beginStory(story);
     this.setFrame(0);
     this.props.beginStory1(0, Choices[0].choices);
   }
@@ -233,7 +247,7 @@ class App extends Component {
   titleScreen() {
     return (
       <TitleScreen
-        beginStory={this.beginStory.bind(this)}
+        beginStory={this.beginStory}
         toggleLoadMenu={this.toggleLoadMenu.bind(this)}
       />
     );
@@ -271,26 +285,25 @@ class App extends Component {
 
   // the GUI interface on the bottom
   renderMenuButtons() {
-      return (
-        <MenuButtons
-          menuButtonsShown={this.props.story.menuButtonsShown}
-          toggleSaveMenu={this.toggleSaveMenu.bind(this)}
-          toggleLoadMenu={this.toggleLoadMenu.bind(this)}
-          saveSlot={this.saveSlot.bind(this)}
-          loadSlot={this.loadSlot.bind(this)}
-          saveMenuShown={this.props.story.saveMenuShown}
-          loadMenuShown={this.props.story.loadMenuShown}
-          toggleMenu={this.toggleMenu.bind(this)}
-          toggleBacklog={this.toggleBacklog.bind(this)}
-          toggleTextBox={this.toggleTextBox.bind(this)}
-          startSkip={this.startSkip.bind(this)}
-          stopSkip={this.stopSkip.bind(this)}
-          isSkipping={this.props.story.isSkipping}
-          textBoxShown={this.props.story.textBoxShown}
-          backlogShown={this.props.story.backlogShown}
-
-        />
-      );
+    return (
+      <MenuButtons
+        menuButtonsShown={this.props.story.menuButtonsShown}
+        toggleSaveMenu={this.toggleSaveMenu.bind(this)}
+        toggleLoadMenu={this.toggleLoadMenu.bind(this)}
+        saveSlot={this.saveSlot.bind(this)}
+        loadSlot={this.loadSlot.bind(this)}
+        saveMenuShown={this.props.story.saveMenuShown}
+        loadMenuShown={this.props.story.loadMenuShown}
+        toggleMenu={this.toggleMenu.bind(this)}
+        toggleBacklog={this.toggleBacklog.bind(this)}
+        toggleTextBox={this.toggleTextBox.bind(this)}
+        startSkip={this.startSkip.bind(this)}
+        stopSkip={this.stopSkip.bind(this)}
+        isSkipping={this.props.story.isSkipping}
+        textBoxShown={this.props.story.textBoxShown}
+        backlogShown={this.props.story.backlogShown}
+      />
+    );
   }
 
   backlog() {
@@ -305,10 +318,15 @@ class App extends Component {
         choicesHistory={this.props.story.choicesHistory}
         indexHistory={this.props.story.indexHistory}
         choicesIndexHistory={this.props.story.choicesIndexHistory}
-        setIndexHistory={indexHistory =>  this.props.setIndexHistory(indexHistory)}
-        setChoicesHistory={choicesHistory => this.props.setChoicesHistory(choicesHistory)}
-        setChoicesStore={choicesStore => this.props.setChoicesStore(choicesStore)}
-
+        setIndexHistory={indexHistory =>
+          this.props.setIndexHistory(indexHistory)
+        }
+        setChoicesHistory={choicesHistory =>
+          this.props.setChoicesHistory(choicesHistory)
+        }
+        setChoicesStore={choicesStore =>
+          this.props.setChoicesStore(choicesStore)
+        }
       />
     );
   }
@@ -338,7 +356,7 @@ class App extends Component {
       <div>
         <ReactCSSTransitionGroup
           component="div"
-          className="container"
+          className=""
           transitionName="menu"
           transitionEnterTimeout={500}
           transitionLeaveTimeout={300}
@@ -346,8 +364,6 @@ class App extends Component {
           {this.props.story.titleScreenShown ? this.titleScreen() : null}
           {this.props.story.frameIsRendering ? this.renderFrame() : null}
           {/* GUI menu buttons */}
-          {this.props.story.saveMenuShown ? this.saveMenu() : null}
-          {this.props.story.loadMenuShown ? this.loadMenu() : null}
           {this.props.story.backlogShown ? this.backlog() : null}
           {/* {this.props.story.frameIsRendering ? this.renderFrame() : null} */}
           {this.props.story.choicesExist ? this.renderChoiceMenu() : null}
