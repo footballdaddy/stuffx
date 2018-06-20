@@ -2,20 +2,24 @@ import React, { Component } from 'react';
 import StoryContainer from './story/AppContainer';
 import TrainingContainer from './training/containers/TrainingContainer';
 import App from './components/App';
-import { Tabs, TabSection } from './components/Tabs/Tabs';
+import { Tab } from 'semantic-ui-react';
 
-class TabExampleActiveIndex extends Component {
+const panes = [
+  {
+    menuItem: 'Story',
+    pane: { active: true, key: 'Story', content: <StoryContainer /> },
+  },
+  { menuItem: 'Physical Training', pane: { key: 'Physical Training', content: <App /> } },
+  {
+    menuItem: 'Magic Training',
+    pane: { key: 'Magic Training', content: <TrainingContainer /> },
+  },
+];
+
+class IndexContainer extends Component {
   render() {
-    return (
-      <div>
-        <Tabs type="text">
-          <TabSection name="Story"><StoryContainer /></TabSection>
-          <TabSection name="Battle"><App /></TabSection>
-          <TabSection name="Ki Training"><TrainingContainer /></TabSection>
-        </Tabs>
-      </div>
-    );
+    return <Tab menu={{ text: true }}  panes={panes} renderActiveOnly={false} />;
   }
 }
 
-export default TabExampleActiveIndex;
+export default IndexContainer;

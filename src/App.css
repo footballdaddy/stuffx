@@ -25,6 +25,20 @@
   /* outline-style: groove; */
 
 }
+
+.header-dungeon, .header-stage, .header-level {
+  width: 50%;
+}
+
+.header-exp {
+  width: 100%;
+
+}
+
+.header-exp-title {
+  width: 100%
+}
+
 .dungeon {
   width: 100%;
   display: flex;

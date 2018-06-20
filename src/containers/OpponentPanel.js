@@ -67,20 +67,6 @@ class OpponentPanel extends React.Component {
                   </p>
                 </div>
               </div>
-              <div className="effect-box">
-                <p>
-                  Current effects: {opponent.effects.length === 0 && 'none'}
-                </p>
-                {opponent.effects.map((effect, i) => (
-                  <div key={i} className="flex-row">
-                    <div className={`battle-effect effect-${effect.name}`} />
-
-                    <p className="center">{`${effect.name}: ${
-                      effect.duration
-                    } turns`}</p>
-                  </div>
-                ))}
-              </div>
           </Fragment>
         )}
       </div>
