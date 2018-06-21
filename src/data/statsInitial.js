@@ -14,14 +14,40 @@ export const statsInitialState = {
   defense: {
     stat: 0,
   },
+  elements: {
+    normalActive: true,
+  },
+  awareness: {
+    rate: 0,
+    value: 150,
+    attack: 1,
+    defense: 1,
+    cap: 2500,
+    capexp: 0,
+    exp: 0,
+    rateGrowth: 0.2,
+    stattype: 'strength',
+  },
+  fire: {
+    rate: 0,
+    value: 150,
+    attack: 1,
+    defense: 1,
+    cap: 2500,
+    capexp: 0,
+    exp: 0,
+    rateGrowth: 0.2,
+    stattype: 'strength',
+  },
   health: {
     stat: 100,
     currenthealth: 10,
   },
   regularstrength: {
     rate: 0,
-    level: 1,
     value: 150,
+    attack: 1,
+    defense: 1,
     cap: 2500,
     capexp: 0,
     exp: 0,
@@ -30,7 +56,6 @@ export const statsInitialState = {
   },
   lesserstrength: {
     rate: 0,
-    level: 1,
     value: 1000,
     cap: 15000,
     capexp: 0,
@@ -41,7 +66,6 @@ export const statsInitialState = {
   },
   greaterstrength: {
     rate: 0,
-    level: 1,
     value: 2000,
     cap: 30000,
     capexp: 0,
@@ -52,7 +76,6 @@ export const statsInitialState = {
   },
   ultimatestrength: {
     rate: 0,
-    level: 1,
     value: 10000,
     cap: 50000,
     capexp: 0,
@@ -63,7 +86,6 @@ export const statsInitialState = {
   },
   regulardefense: {
     rate: 0,
-    level: 1,
     value: 1,
     exp: 0,
     cap: 2500,
@@ -74,7 +96,6 @@ export const statsInitialState = {
   },
   lesserdefense: {
     rate: 0,
-    level: 1,
     value: 1000,
     exp: 0,
     cap: 2500,
@@ -85,7 +106,6 @@ export const statsInitialState = {
   },
   greaterdefense: {
     rate: 0,
-    level: 1,
     value: 2000,
     exp: 0,
     cap: 2500,
@@ -96,7 +116,6 @@ export const statsInitialState = {
   },
   ultimatedefense: {
     rate: 0,
-    level: 1,
     value: 10000,
     exp: 0,
     cap: 2500,
