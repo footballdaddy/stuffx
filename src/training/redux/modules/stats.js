@@ -16,20 +16,23 @@ const CALCULATE_SPIRIT_REBIRTH = 'gotg/stat/CALCULATE_SPIRIT_REBIRTH';
 
 // Actions ---------------------------------------------------------------------
 
-export const incrementStat = (stat, rate) => ({
+export const incrementStat = (stat, index, rate) => ({
   type: INCREMENT_STAT,
   stat,
+  index,
   rate,
 });
 
-export const decrementStat = (stat, rate) => ({
+export const decrementStat = (stat, index, rate) => ({
   type: DECREMENT_STAT,
   stat,
+  index,
   rate,
 });
-export const incrementValue = (key, value) => ({
+export const incrementValue = (key, index, value) => ({
   type: INCREMENT_VALUE,
   key,
+  index,
   value,
 });
 export const incrementEnergyValue = (key, value) => ({
@@ -92,23 +95,36 @@ export default function statReducer(state = statsInitialState, action) {
         },
       };
     case INCREMENT_VALUE:
+    // console.log(action.key + ' ' + action.index+ ' ' + action.rate)
       return {
         ...state,
-        [action.key]: {
-          ...state[action.key],
-          exp: action.value + state[action.key].exp,
+        magic: {
+          ...state.magic,
+          [action.key]: {
+            ...state.magic[action.key],
+            exp: Object.assign([], state.magic[action.key].exp, {
+              [action.index]:
+              state.magic[action.key].exp[action.index] + action.value,
+            }),
+          },
         },
       };
 
     case INCREMENT_STAT:
-      if (state.energy.value <= 0) {
-        return state;
-      } else {
-        return {
+    if (state.energy.value <= 0) {
+      return state;
+    } else {
+      return {
           ...state,
-          [action.stat]: {
-            ...state[action.stat],
-            rate: state[action.stat].rate + action.rate,
+          magic: {
+            ...state.magic,
+            [action.stat]: {
+              ...state.magic[action.stat],
+              rate: Object.assign([], state.magic[action.stat].rate, {
+                [action.index]:
+                  (state.magic[action.stat].rate[action.index] + action.rate),
+              }),
+            },
           },
           energy: {
             ...state.energy,
@@ -118,14 +134,20 @@ export default function statReducer(state = statsInitialState, action) {
       }
 
     case DECREMENT_STAT:
-      if (state[action.stat].rate <= 0) {
+      if (state.magic[action.stat].rate <= 0) {
         return state;
       } else {
         return {
           ...state,
-          [action.stat]: {
-            ...state[action.stat],
-            rate: state[action.stat].rate - action.rate,
+          magic: {
+            ...state.magic,
+            [action.stat]: {
+              ...state.magic[action.stat],
+              rate: Object.assign([], state.magic[action.stat].rate, {
+                [action.index]:
+                  state.magic[action.stat].rate[action.index] - action.rate,
+              }),
+            },
           },
           energy: {
             ...state.energy,
@@ -181,14 +203,14 @@ export default function statReducer(state = statsInitialState, action) {
         };
       }
     case CALCULATE_SPIRIT_REBIRTH:
-      if (1 / 20 * state.energy.exp <= 100000) {
+      if ((1 / 20) * state.energy.exp <= 100000) {
         return {
           ...state,
           energy: {
             ...state.energy,
             level: 10,
             value: 10,
-            cap: state.energy.cap + 1 / 20 * state.energy.exp,
+            cap: state.energy.cap + (1 / 20) * state.energy.exp,
           },
           health: {
             stat: 100,

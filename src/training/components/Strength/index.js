@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-const strengthList = ['regular', 'lesser', 'greater', 'ultimate'];
 
 export default class Strength extends Component {
   static propTypes = {
@@ -9,38 +8,39 @@ export default class Strength extends Component {
     decrementStat: PropTypes.func,
   };
   render() {
-    const { stats } = this.props;
+    const {magic} = this.props.stats
+    const {stats} = this.props
     return (
       <div>
-        {strengthList.map((strengthStat, i) => (
+        {Object.keys(magic).map((training, i) => (
           <div key={i}>
             <label id="value">
-              {strengthStat} Strength Current Cap:{' '}
-              {stats[strengthStat + 'strength'].cap} Reduce Gain:{' '}
-              {stats[strengthStat + 'strength'].rateGrowth *
-                (stats[strengthStat + 'strength'].exp /
-                  stats[strengthStat + 'strength'].cap) <=
+              Normal {training}  Current Cap:{' '}
+              {magic[training].cap[0]} Reduce Gain:{' '}
+              {magic[training].rateGrowth[0] *
+                (magic[training].exp[0] /
+                  magic[training].cap[0]) <=
               250
-                ? stats[strengthStat + 'strength'].rateGrowth *
-                  (stats[strengthStat + 'strength'].exp /
-                    stats[strengthStat + 'strength'].cap)
-                : stats[strengthStat + 'strength'].cap}
+                ? magic[training].rateGrowth[0] *
+                  (magic[training].exp[0] /
+                    magic[training].cap[0])
+                : magic[training].cap[0]}
               <br />
               Current Level:
-              {stats[strengthStat + 'strength'].exp /
-                stats[strengthStat + 'strength'].cap}{' '}
-              Rate Value: {stats[strengthStat + 'strength'].rate}
+              {magic[training].exp[0] /
+                magic[training].cap[0]}{' '}
+              Rate Value: {magic[training].rate[0]}
             </label>
             <button
               onClick={() =>
-                this.props.incrementStat(strengthStat + 'strength', 1)
+                this.props.incrementStat(training, 0 , 1)
               }
             >
               +
             </button>
             <button
               onClick={() =>
-                this.props.decrementStat(strengthStat + 'strength', 1)
+                this.props.decrementStat(training, 0 , 1)
               }
             >
               -
@@ -48,8 +48,9 @@ export default class Strength extends Component {
             <button
               onClick={() =>
                 this.props.decrementStat(
-                  strengthStat + 'strength',
-                  stats[strengthStat + 'strength'].rate,
+                  training,
+                  0,
+                  magic[training].rate[0],
                 )
               }
             >
@@ -58,7 +59,8 @@ export default class Strength extends Component {
             <button
               onClick={() =>
                 this.props.incrementStat(
-                  strengthStat + 'strength',
+                  training,
+                  0,
                   stats.energy.value,
                 )
               }

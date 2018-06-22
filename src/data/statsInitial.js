@@ -14,30 +14,79 @@ export const statsInitialState = {
   defense: {
     stat: 0,
   },
-  elements: {
-    normalActive: true,
-  },
-  awareness: {
-    rate: 0,
-    value: 150,
-    attack: 1,
-    defense: 1,
-    cap: 2500,
-    capexp: 0,
-    exp: 0,
-    rateGrowth: 0.2,
-    stattype: 'strength',
-  },
-  fire: {
-    rate: 0,
-    value: 150,
-    attack: 1,
-    defense: 1,
-    cap: 2500,
-    capexp: 0,
-    exp: 0,
-    rateGrowth: 0.2,
-    stattype: 'strength',
+
+  elements: ["fire", "earth", "water", "air"],
+  magic: {
+    awareness: {
+      name: ["fire", "earth", "water", "air"],
+      rate: [0, 0, 0, 0],
+      value: [150, 150, 150, 150],
+      attackMultiplier: [1, 1, 1, 1],
+      defenseMultiplier: [1, 1, 1, 1],
+      cap: [2500, 2500, 2500, 2500],
+      exp: [0, 0, 0, 0],
+      rateGrowth: [0.2, 0.2, 0.2, 0.2]
+    },
+    exploration: {
+      name: ["fire", "earth", "water", "air"],
+      rate: [0, 0, 0, 0],
+      value: [150, 150, 150, 150],
+      attackMultiplier: [1, 1, 1, 1],
+      defenseMultiplier: [1, 1, 1, 1],
+      cap: [2500, 2500, 2500, 2500],
+      exp: [0, 0, 0, 0],
+      rateGrowth: [0.2, 0.2, 0.2, 0.2]
+    },
+    discovery: {
+      name: ["fire", "earth", "water", "air"],
+      rate: [0, 0, 0, 0],
+      value: [150, 150, 150, 150],
+      attackMultiplier: [1, 1, 1, 1],
+      defenseMultiplier: [1, 1, 1, 1],
+      cap: [2500, 2500, 2500, 2500],
+      exp: [0, 0, 0, 0],
+      rateGrowth: [0.2, 0.2, 0.2, 0.2]
+    },
+    understanding: {
+      name: ["fire", "earth", "water", "air"],
+      rate: [0, 0, 0, 0],
+      value: [150, 150, 150, 150],
+      attackMultiplier: [1, 1, 1, 1],
+      defenseMultiplier: [1, 1, 1, 1],
+      cap: [2500, 2500, 2500, 2500],
+      exp: [0, 0, 0, 0],
+      rateGrowth: [0.2, 0.2, 0.2, 0.2]
+    },
+    admiration: {
+      name: ["fire", "earth", "water", "air"],
+      rate: [0, 0, 0, 0],
+      value: [150, 150, 150, 150],
+      attackMultiplier: [1, 1, 1, 1],
+      defenseMultiplier: [1, 1, 1, 1],
+      cap: [2500, 2500, 2500, 2500],
+      exp: [0, 0, 0, 0],
+      rateGrowth: [0.2, 0.2, 0.2, 0.2]
+    },
+    transformation: {
+      name: ["fire", "earth", "water", "air"],
+      rate: [0, 0, 0, 0],
+      value: [150, 150, 150, 150],
+      attackMultiplier: [1, 1, 1, 1],
+      defenseMultiplier: [1, 1, 1, 1],
+      cap: [2500, 2500, 2500, 2500],
+      exp: [0, 0, 0, 0],
+      rateGrowth: [0.2, 0.2, 0.2, 0.2]
+    },
+    mastery: {
+      name: ["fire", "earth", "water", "air"],
+      rate: [0, 0, 0, 0],
+      value: [150, 150, 150, 150],
+      attackMultiplier: [1, 1, 1, 1],
+      defenseMultiplier: [1, 1, 1, 1],
+      cap: [2500, 2500, 2500, 2500],
+      exp: [0, 0, 0, 0],
+      rateGrowth: [0.2, 0.2, 0.2, 0.2]
+    }
   },
   health: {
     stat: 100,

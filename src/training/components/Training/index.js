@@ -41,7 +41,7 @@ export default class App extends Component {
           <Strength {...this.props} />
         </div>
         <div>
-          <Defense {...this.props} />
+          {/* <Defense {...this.props} /> */}
         </div>
         <div>
           <h1>Attack: {stats.attack.stat}</h1>

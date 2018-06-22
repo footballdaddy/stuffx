@@ -1,10 +1,12 @@
 import { delay } from 'redux-saga';
 import { call, put, select } from 'redux-saga/effects';
+import each from 'lodash/each'
 import {
   getStatData,
   getGameData,
   getEnemyData,
   getSkillData,
+  getMagicData,
 } from '../selectors';
 import {
   incrementValue,
@@ -13,7 +15,7 @@ import {
   calculateDefense,
   calculateSpiritLevel,
   enemyAttacks,
-} from '../redux/modules/stats';
+} from '../training/redux/modules/stats';
 
 import { victory, defeat } from '../redux/modules/game';
 import { decrementCoolDown } from '../redux/modules/skills';
@@ -29,10 +31,13 @@ export default function* gameLoop() {
   let lastUpdateTime = Date.now();
   let currentTime;
   let deltaTime;
+  // let training;
   let statData = yield select(getStatData);
   let gameData = yield select(getGameData);
   let enemyData = yield select(getEnemyData);
   let skillData = yield select(getSkillData);
+  let magicData = yield select(getMagicData);
+
 
   // Game Loop runs at 60 fps (may be an option set by the user later)
 
@@ -44,6 +49,7 @@ export default function* gameLoop() {
       gameData = yield select(getGameData);
       enemyData = yield select(getEnemyData);
       skillData = yield select(getSkillData);
+      magicData = yield select(getMagicData);
       currentTime = Date.now();
       deltaTime = currentTime - lastUpdateTime;
       lastUpdateTime = currentTime;
@@ -72,25 +78,35 @@ export default function* gameLoop() {
           yield put(nextEnemy());
         }
       }
-      for (let key in statData) {
-        if (statData[key].stattype === 'strength' && statData[key].exp > 1)
-          attackStat =
+      //  training = Object.keys(magicData);
+      //  awareness, exploration
+      for (let i = 0; i < statData.elements.length; i++) {
+          for (let j = 0; j < Object.keys(magicData).length; j++) {
+            attackStat =
             attackStat +
-            statData[key].exp / statData[key].cap * statData[key].value;
-        if (statData[key].stattype === 'defense' && statData[key].exp > 1)
+            magicData[Object.keys(magicData)[j]].exp[i] /
+              magicData[Object.keys(magicData)[j]].cap[i] *
+              magicData[Object.keys(magicData)[j]].value[i];
           defenseStat =
-            defenseStat +
-            statData[key].exp / statData[key].cap * statData[key].value;
+            magicData[Object.keys(magicData)[j]].exp[i] /
+            magicData[Object.keys(magicData)[j]].cap[i] *
+            magicData[Object.keys(magicData)[j]].value[i];
+            // console.log(magicData.awareness.rate[0])
+            if (magicData[Object.keys(magicData)[j]].rate[i] > 0) {
+              // Object.keys(magicData)method, element, value
+              yield put(
+                incrementValue(
+                  Object.keys(magicData)[j], i,
+                  magicData[Object.keys(magicData)[j]].rate[i] * frameRate * deltaTime / 1000,
+                ),
+              );
+            }
 
-        if (statData[key].rate > 0) {
-          yield put(
-            incrementValue(
-              key,
-              statData[key].rate * frameRate * deltaTime / 1000,
-            ),
-          );
+          }
+
         }
-      }
+
+
       attackStat = attackStat + 10;
       defenseStat = defenseStat + 10;
       yield put(calculateAttack(attackStat));
