@@ -84,20 +84,21 @@ export default function* gameLoop() {
           for (let j = 0; j < Object.keys(magicData).length; j++) {
             attackStat =
             attackStat +
-            magicData[Object.keys(magicData)[j]].exp[i] /
-              magicData[Object.keys(magicData)[j]].cap[i] *
-              magicData[Object.keys(magicData)[j]].value[i];
+            magicData[Object.keys(magicData)[j]].exp[statData.elements[i]] /
+              magicData[Object.keys(magicData)[j]].cap[statData.elements[i]] *
+              magicData[Object.keys(magicData)[j]].value[statData.elements[i]];
           defenseStat =
-            magicData[Object.keys(magicData)[j]].exp[i] /
-            magicData[Object.keys(magicData)[j]].cap[i] *
-            magicData[Object.keys(magicData)[j]].value[i];
-            // console.log(magicData.awareness.rate[0])
-            if (magicData[Object.keys(magicData)[j]].rate[i] > 0) {
+          magicData[Object.keys(magicData)[j]].exp[statData.elements[i]] /
+          magicData[Object.keys(magicData)[j]].cap[statData.elements[i]] *
+          magicData[Object.keys(magicData)[j]].value[statData.elements[i]];
+        // console.log(magicData[Object.keys(magicData)[j]].rate[statData.elements[i]])
+        // console.log(statData.elements[i])
+            if (magicData[Object.keys(magicData)[j]].rate[statData.elements[i]] > 0) {
               // Object.keys(magicData)method, element, value
               yield put(
                 incrementValue(
-                  Object.keys(magicData)[j], i,
-                  magicData[Object.keys(magicData)[j]].rate[i] * frameRate * deltaTime / 1000,
+                  Object.keys(magicData)[j], statData.elements[i],
+                  magicData[Object.keys(magicData)[j]].rate[statData.elements[i]] * frameRate * deltaTime / 1000,
                 ),
               );
             }

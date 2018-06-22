@@ -95,22 +95,21 @@ export default function statReducer(state = statsInitialState, action) {
         },
       };
     case INCREMENT_VALUE:
-    // console.log(action.key + ' ' + action.index+ ' ' + action.rate)
+    // console.log(action.key + ' ' + action.index+ ' ' + action.value)
       return {
         ...state,
         magic: {
           ...state.magic,
           [action.key]: {
             ...state.magic[action.key],
-            exp: Object.assign([], state.magic[action.key].exp, {
-              [action.index]:
-              state.magic[action.key].exp[action.index] + action.value,
-            }),
+            exp: {...state.magic[action.key].exp, [action.index]:
+              state.magic[action.key].exp[action.index] + action.value},
           },
         },
       };
 
     case INCREMENT_STAT:
+    // console.log(action.stat + action.index)
     if (state.energy.value <= 0) {
       return state;
     } else {
@@ -120,10 +119,8 @@ export default function statReducer(state = statsInitialState, action) {
             ...state.magic,
             [action.stat]: {
               ...state.magic[action.stat],
-              rate: Object.assign([], state.magic[action.stat].rate, {
-                [action.index]:
-                  (state.magic[action.stat].rate[action.index] + action.rate),
-              }),
+              rate: {...state.magic[action.stat].rate, [action.index]:
+                (state.magic[action.stat].rate[action.index] + action.rate)}
             },
           },
           energy: {
@@ -143,10 +140,8 @@ export default function statReducer(state = statsInitialState, action) {
             ...state.magic,
             [action.stat]: {
               ...state.magic[action.stat],
-              rate: Object.assign([], state.magic[action.stat].rate, {
-                [action.index]:
-                  state.magic[action.stat].rate[action.index] - action.rate,
-              }),
+              rate: {...state.magic[action.stat].rate, [action.index]:
+                state.magic[action.stat].rate[action.index] - action.rate}
             },
           },
           energy: {
