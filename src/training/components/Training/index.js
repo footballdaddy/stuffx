@@ -3,18 +3,21 @@ import PropTypes from 'prop-types';
 import Strength from '../Strength';
 import Defense from '../Defense';
 import Rebirth from '../Rebirth';
-import BattleContainer from '../../containers/BattleContainer'
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.timerId = null;
-  }
+import BattleContainer from '../../containers/BattleContainer';
+import { Dropdown } from 'semantic-ui-react';
 
+
+export default class App extends Component {
   static propTypes = {
     stats: PropTypes.object,
     incrementStat: PropTypes.func,
     decrementStat: PropTypes.func,
   };
+
+  handleChange = (event) => {
+    this.props.changeElementUI(event.target.value)
+    // console.log(event.target.value)
+  }
 
   // rebirthStats = () => {
   //   callRebirth();
@@ -22,6 +25,7 @@ export default class App extends Component {
 
   render() {
     const { stats } = this.props;
+    const { elementUnlocks } = this.props.stats;
     return (
       <div>
         <div
@@ -38,11 +42,19 @@ export default class App extends Component {
           </h1>
         </div>
         <div>
+          <select value={this.props.elementActive} onChange={this.handleChange}>
+          {Object.keys(elementUnlocks)
+            .filter(unlocked => elementUnlocks[unlocked] === true)
+            .map((element, index) => (
+                <option key={index} value={element}>{element}</option>
+              ))}
+              </select>
+        </div>
+
+        <div>
           <Strength {...this.props} />
         </div>
-        <div>
-          {/* <Defense {...this.props} /> */}
-        </div>
+        <div>{/* <Defense {...this.props} /> */}</div>
         <div>
           <h1>Attack: {stats.attack.stat}</h1>
         </div>

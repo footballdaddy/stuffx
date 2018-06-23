@@ -70,6 +70,12 @@ export const calculateSpiritRebirth = key => ({
   type: CALCULATE_SPIRIT_REBIRTH,
   key,
 });
+export const changeElementUI = element => ({
+  type: 'CHANGE_ELEMENT_UI',
+  element,
+});
+
+
 
 // Battle
 
@@ -94,6 +100,21 @@ export default function statReducer(state = statsInitialState, action) {
               : state.health.currenthealth - action.damage,
         },
       };
+    case 'CHANGE_ELEMENT_UI':
+    return {
+      ...state, elementActive: action.element
+    }
+    case 'ADD_REWARD': {
+      if (action.reward.hasOwnProperty('element')) {
+        return {
+          ...state,
+          elementUnlocks: {...state.elementUnlocks, [action.reward.element]: true}
+        };
+      } else {
+        return state;
+      }
+
+    }
     case INCREMENT_VALUE:
     // console.log(action.key + ' ' + action.index+ ' ' + action.value)
       return {

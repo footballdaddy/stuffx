@@ -8,39 +8,39 @@ export default class Strength extends Component {
     decrementStat: PropTypes.func,
   };
   render() {
-    const {magic} = this.props.stats
+    const {magic, elementActive} = this.props.stats
     const {stats} = this.props
     return (
       <div>
         {Object.keys(magic).map((training, i) => (
           <div key={i}>
             <label id="value">
-              Normal {training}  Current Cap:{' '}
-              {magic[training].cap['normal']} Reduce Gain:{' '}
-              {magic[training].rateGrowth['normal'] *
-                (magic[training].exp['normal'] /
-                  magic[training].cap['normal']) <=
+              {elementActive} {training}  Current Cap:{' '}
+              {magic[training].cap[elementActive]} Reduce Gain:{' '}
+              {magic[training].rateGrowth[elementActive] *
+                (magic[training].exp[elementActive] /
+                  magic[training].cap[elementActive]) <=
               250
-                ? magic[training].rateGrowth['normal'] *
-                  (magic[training].exp['normal'] /
-                    magic[training].cap['normal'])
-                : magic[training].cap['normal']}
+                ? magic[training].rateGrowth[elementActive] *
+                  (magic[training].exp[elementActive] /
+                    magic[training].cap[elementActive])
+                : magic[training].cap[elementActive]}
               <br />
               Current Level:
-              {magic[training].exp['normal'] /
-                magic[training].cap['normal']}{' '}
-              Rate Value: {magic[training].rate['normal']}
+              {magic[training].exp[elementActive] /
+                magic[training].cap[elementActive]}{' '}
+              Rate Value: {magic[training].rate[elementActive]}
             </label>
             <button
               onClick={() =>
-                this.props.incrementStat(training, 'normal' , 1)
+                this.props.incrementStat(training, elementActive , 1)
               }
             >
               +
             </button>
             <button
               onClick={() =>
-                this.props.decrementStat(training, 'normal' , 1)
+                this.props.decrementStat(training, elementActive , 1)
               }
             >
               -
@@ -49,8 +49,8 @@ export default class Strength extends Component {
               onClick={() =>
                 this.props.decrementStat(
                   training,
-                  'normal',
-                  magic[training].rate['normal'],
+                  elementActive,
+                  magic[training].rate[elementActive],
                 )
               }
             >
@@ -60,7 +60,7 @@ export default class Strength extends Component {
               onClick={() =>
                 this.props.incrementStat(
                   training,
-                  'normal',
+                  elementActive,
                   stats.energy.value,
                 )
               }

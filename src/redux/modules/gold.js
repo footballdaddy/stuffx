@@ -12,10 +12,14 @@ export default (state = initialState, action) => {
 
     case 'END_BATTLE_VICTORY':
     case 'ADD_REWARD':
-      return {
-        ...state,
-        gold: state.gold + action.reward.gold,
-      };
+      if (action.reward.hasOwnProperty('gold')) {
+        return {
+          ...state,
+          gold: state.gold + action.reward.gold,
+        };
+      } else {
+        return state;
+      }
     case 'END_BATTLE_DEFEAT':
       return { ...state, gold: state.gold };
     case 'END_GAME':

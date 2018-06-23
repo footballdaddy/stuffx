@@ -16,6 +16,37 @@ export const statsInitialState = {
   },
 
   elements: ['normal', 'fire', 'earth', 'water', 'air'],
+  elementUnlocks: {normal: true, fire: true, earth: true, water: true, air: false},
+
+  // elementUnlocks:
+  //   {
+  //     normal: {
+  //       text: 'Normal',
+  //       value: 'Normal',
+  //       unlocked: true,
+  //     },
+  //     fire: {
+  //       text: 'Fire',
+  //       value: 'Fire',
+  //       unlocked: true,
+  //     },
+  //     earth: {
+  //       text: 'Earth',
+  //       value: 'Earth',
+  //       unlocked: true,
+  //     },
+  //     water: {
+  //       text: 'Water',
+  //       value: 'Water',
+  //       unlocked: true,
+  //     },
+  //     air: {
+  //       text: 'Air',
+  //       value: 'Air',
+  //       unlocked: true,
+  //     }
+  //   },
+  elementActive: 'normal',
   magic: {
     awareness: {
       rate: {normal: 0, fire: 0, earth: 0, water: 0, air: 0},
