@@ -10,7 +10,6 @@ import {
 } from '../redux/modules/actions';
 import { upgradeItem } from '../redux/modules/inventory';
 
-import ItemDescription from './ItemDescription';
 import Inventory from '../components/Inventory';
 
 class EquipPanel extends React.Component {

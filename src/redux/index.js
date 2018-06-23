@@ -14,7 +14,7 @@ import opponent from './modules/opponent';
 import skills from './modules/skills';
 import story from '../story/reducers/story'
 import stats from '../training/redux/modules/stats';
-
+import modal from './modules/modal'
 export default combineReducers({
   stats,
   game,
@@ -30,5 +30,6 @@ export default combineReducers({
   playerstats,
   opponent,
   skills,
-  story
+  story,
+  modal
 });
