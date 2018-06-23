@@ -14,9 +14,6 @@ import ItemDescription from './ItemDescription';
 import Inventory from '../components/Inventory';
 
 class EquipPanel extends React.Component {
-  showItemDescription = item => {
-    this.props.showDescription(item);
-  };
 
   handleClick = el => {
     this.props.unequipItem(el);
@@ -38,7 +35,7 @@ class EquipPanel extends React.Component {
   };
 
   render() {
-    const { equipped, hoveredItem } = this.props;
+    const { equipped } = this.props;
     const categoriesArray = [
       'weapons',
       'armors',
@@ -51,7 +48,6 @@ class EquipPanel extends React.Component {
     );
     return (
       <div className="equip-panel">
-        <ItemDescription hoveredItem={hoveredItem} />
         {categoriesArray.map((el, i) => (
           <div key={i} className={`empty-slot equipped-item ${el}`} />
         ))}
@@ -61,14 +57,10 @@ class EquipPanel extends React.Component {
               className={`used-slot equipped-item id_${el.id} ${el.category}`}
               onClick={() => {
                 this.handleClick(el);
-                this.showItemDescription('');
               }}
-              onMouseEnter={() => this.showItemDescription(el)}
-              onMouseLeave={() => this.showItemDescription('')}
             />
           </div>
         ))}
-        <div style={{ marginTop: '50px' }} />
 
         <Inventory />
       </div>
@@ -79,7 +71,6 @@ class EquipPanel extends React.Component {
 const mapStateToProps = state => ({
   equipped: state.equip.equipped,
   temporaryEffects: state.tempeffects.temporaryEffects,
-  hoveredItem: state.description.hoveredItem,
 });
 
 export default connect(
@@ -89,7 +80,6 @@ export default connect(
     addEffect,
     calculateAttributeBonus,
     restoreHP,
-    showDescription,
     upgradeItem,
   },
 )(EquipPanel);

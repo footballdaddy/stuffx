@@ -1,36 +1,36 @@
 import React, { Component } from 'react';
-
+import { Button, Popup } from 'semantic-ui-react';
+import ItemDescription from '../../containers/ItemDescription';
 export default class Inventory extends Component {
   constructor(props) {
     super(props);
-    this.handleRemove = this.handleRemove.bind(this);
   }
-
-  handleRemove = () => {
-    const { id } = this.props.value;
-    this.props.removeMovie(id);
-  };
 
   render() {
     return (
-          <div className="item-inventory flex-container-column">
-            <div
-              className={`equipped-item-icon id_${this.props.value.id}`}
-              // onMouseEnter={() =>
-              //   this.props.showItemDescription(this.props.value)
-              // }
-              // onMouseLeave={() => this.props.showItemDescription('')}
-            />
-            <div>
-              <button
-                onClick={() => this.props.onClick(this.props.value)}
-              >Equip</button>
-            </div>
-<div className="center-text">
 
-            {this.props.value.name}
-</div>
-          </div>
+      <div className="item-inventory flex-container-column">
+              <div style={{ marginTop: '50px' }} />
+
+        <div
+          className={`equipped-item-icon id_${this.props.value.id}`}
+        />
+        <div className="flex-container-column">
+          <Button
+            color="green"
+            onClick={() => this.props.onClick(this.props.value)}
+            content="Equip"
+          />
+
+          <Popup
+            trigger={<Button color="teal" content="Info" />}
+            content={<ItemDescription hoveredItem={this.props.value} />}
+            on="click"
+            position="top right"
+          />
+        </div>
+        <div className="center-text">{this.props.value.name}</div>
+      </div>
     );
   }
 }

@@ -5,11 +5,11 @@ import App from './components/App';
 import { Tab } from 'semantic-ui-react';
 
 const panes = [
+  { menuItem: 'Physical Training', pane: { key: 'Physical Training', content: <App /> } },
   {
     menuItem: 'Story',
     pane: { active: true, key: 'Story', content: <StoryContainer /> },
   },
-  { menuItem: 'Physical Training', pane: { key: 'Physical Training', content: <App /> } },
   {
     menuItem: 'Magic Training',
     pane: { key: 'Magic Training', content: <TrainingContainer /> },
